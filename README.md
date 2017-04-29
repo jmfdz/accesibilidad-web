@@ -1,12 +1,10 @@
 # Accesibilidad web
 
-Ejemplos de código accesible, pestañas, cuadros de diálogo, formularios y mucho más
+Ejemplos de código accesible: pestañas, cuadros de diálogo, formularios y mucho más.
 
-Visita la página de ejemplos de accesibilidad:
+[Visitar página de ejemplos de accesibilidad](https://jmfdz.github.io/accesibilidadweb)
 
-https://jmfdz.github.io/accesibilidadweb
-
-El repositorio incluye:
+El proyecto está realizado con:
 * Proyecto HTML5, CSS3 y JavaScirt
 * Twitter Bootstrap 3.3.7
 * Proyecto de IntelliJ IDEA
