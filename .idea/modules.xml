@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/accesibilidad-web.iml" filepath="$PROJECT_DIR$/accesibilidad-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/accesibilidadweb.iml" filepath="$PROJECT_DIR$/accesibilidadweb.iml" />
     </modules>
   </component>
 </project>
