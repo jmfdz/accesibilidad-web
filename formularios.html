@@ -2,71 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Formularios accesibles - Accesibilidad Web</title>
+    <title>Formulario - Accesibilidad Web</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <style>
-        [aria-invalid] { border-color: red; }
+    <style type="text/css">
+        [aria-invalid] {
+            border-color: red;
+        }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Menú principal</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="index.html" title="Ir a página de inicio">
+<div class="container-fluid">
+    <ul class="nav nav-pills">
+<li>
+    <a href="index.html" title="Ir a página de inicio">
                 Accesibilidad Web
-            </a>
-
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <ul class="nav navbar-nav">
-                <li class="active">
+         </a>
+</li>
+ <li class="active">
                     <a href="formularios.html">Formularios</a>
                 </li>
-
             </ul>
-        </div>
-
-
-    </div>
-</nav>
+</div>
 
 
 
 
 <div class="jumbotron">
     <div class="container">
-         <h1>Formularios accesibles</h1>
-        <p class="lead">Descubre como etiquetar de forma correcta formularios e insertar mensajes de error de forma accesible.</p>
+        <h1>Formulario de contacto</h1>
+        <p class="lead">Ejemplo de formulario de contacto accesible; sencillo, etiquetado correctamente y mostrando mensajes de error de manera accesible.</p>
     </div>
 </div>
 
 <div class="container">
 
-
-    <div class="col-sm-5">
-        <h1>Formulario de contacto</h1>
-
-        <p>Los campos marcados con * son obligatorios.</p>
-        <hr/>
+    <div class="col-sm-8">
 
         <div id="areaMensajes" aria-live="assertive">
 
         </div>
 
         <form action="#" id="formulario-de-contacto" class="form-horizontal">
+            <legend>Completa el formulario para contactar con nosotros. Los campos marcados con * son obligatorios.</legend>
+
             <div class="form-group">
                 <label class="control-label col-sm-3" for="nombre">Tu nombre *</label>
                 <div class="col-sm-9">
@@ -88,7 +69,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3" for="mensaje">Tu mensaje *</label>
                 <div class="col-sm-9">
-                    <textarea id="mensaje" class="form-control" aria-required="true" ></textarea>
+                    <textarea id="mensaje" rows="6" class="form-control" aria-required="true" ></textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -98,27 +79,17 @@
             </div>
         </form>
     </div>
-    <div class="col-sm-7">
-        <h3>Características del formulario de contacto</h3>
-        <ul>
-            <li>Se describe el proósito del formulario.</li>
-            <li>Se indica qué campos son obligatorios y cómo están marcados.</li>
-            <li>Todos los campos del formulario tienen etiquetas asociadas.</li>
 
-        </ul>
-    </div>
     </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
-    $(document).ready(function(){
-        console.log("Comienza a cargar mi código JavaScrit");
+    $(function(){
 
         $("#formulario-de-contacto").submit(function(){
             var enviarFormulario = true;
-            var mensajesDeError = "<ul>";
+            var mensajesDeError = "";
 
             var mapaDeErrores = { "nombre_blank" : "El campo nombre no puede estar vacío. Introduce tu nombre.",
                 "email_blank" : "El campo email no puede estar vacío. Introduce tu dirección de correo electrónico.",
@@ -130,17 +101,20 @@
                 var campo = $(this);
                 if(campo.val() == "" || campo.val() == " "){
                     enviarFormulario = false;
-                    mensajesDeError += "<li>" + mapaDeErrores[campo.prop('id') + "_blank"] + "</li>";
+                    mensajesDeError += "<p>ERROR: " + mapaDeErrores[campo.prop('id') + "_blank"] + "</p>";
                     campo.attr("aria-invalid","true");
+                }else {
+                    campo.removeAttr("aria-invalid");
                 }
             });
             if(enviarFormulario) {
-                $("#areaMensajes").html("<p>El formulario se ha enviado correctamente.</p>");
+                $("#areaMensajes").html("<div class='alert alert-success'><p>El formulario se ha enviado correctamente.</p></div>");
             }else{
-                $("#areaMensajes").html( mensajesDeError + "</ul>");
+                $("#areaMensajes").html("<div class='alert alert-danger'>" + mensajesDeError + "</div>");
+                $("#formulario-de-contacto [aria-required=true]:first").focus();
             }
 
-            return enviarFormulario;
+            return false;
         });
     });
 </script>
