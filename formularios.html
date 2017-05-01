@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="nombre">Tu nombre *</label>
                             <div class="col-sm-9">
-                                <input id="nombre" type="text" class="form-control" required/>
+                                <input id="nombre" type="text" class="form-control" aria-required="true"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,13 +62,13 @@
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="email">Tu email *</label>
                             <div class="col-sm-9">
-                                <input id="email" type="email" class="form-control" required/>
+                                <input id="email" type="email" class="form-control" aria-required="true"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="mensaje">Tu mensaje *</label>
                             <div class="col-sm-9">
-                                <textarea id="mensaje" rows="6" class="form-control" required></textarea>
+                                <textarea id="mensaje" rows="6" class="form-control" aria-required="true"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -100,7 +100,7 @@
             };
 
 
-            $("#formulario-de-contacto [required]").each(function () {
+            $("#formulario-de-contacto [aria-required]").each(function () {
                 var campo = $(this);
                 if (campo.val() == "" || campo.val() == " ") {
                     enviarFormulario = false;
