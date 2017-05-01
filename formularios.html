@@ -1,117 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Formulario - Accesibilidad Web</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <style type="text/css">
-        [aria-invalid] {
-            border-color: red;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario de contacto accesible</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="container-fluid">
-    <ul class="nav nav-pills">
-<li>
-    <a href="index.html" title="Ir a página de inicio">
-                Accesibilidad Web
-         </a>
-</li>
- <li class="active">
-                    <a href="formularios.html">Formularios</a>
-                </li>
-            </ul>
-</div>
-
-
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html" title="Ir a página de inicio">
+                <span class="glyphicon glyphicon-home"></span> Accesibilidad Web
+            </a>
+        </div>
+    </div>
+</nav>
 
 
 <div class="jumbotron">
     <div class="container">
-        <h1>Formulario de contacto</h1>
-        <p class="lead">Ejemplo de formulario de contacto accesible; sencillo, etiquetado correctamente y mostrando mensajes de error de manera accesible.</p>
+        <h1>Formulario de contacto accesible</h1>
+        <p class="lead">Ejemplo de formulario de contacto sencillo, correctamente etiquetado y que inserta mensajes de
+            error
+            de manera accesible.</p>
     </div>
 </div>
 
+
 <div class="container">
+    <div class="col-sm-7">
+        <div class="row">
 
-    <div class="col-sm-8">
+            <div class="panel panel-primary">
+                <div class="panel-body">
 
-        <div id="areaMensajes" aria-live="assertive">
+                    <p>Completa el formulario para contactar con nosotros. Los campos marcados con * son
+                        obligatorios.</p>
 
+                    <form action="#" id="formulario-de-contacto" class="form-horizontal">
+
+                        <div id="areaMensajes" aria-live="assertive">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="nombre">Tu nombre *</label>
+                            <div class="col-sm-9">
+                                <input id="nombre" type="text" class="form-control" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="asunto">Asunto</label>
+                            <div class="col-sm-9">
+                                <input id="asunto" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="email">Tu email *</label>
+                            <div class="col-sm-9">
+                                <input id="email" type="email" class="form-control" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="mensaje">Tu mensaje *</label>
+                            <div class="col-sm-9">
+                                <textarea id="mensaje" rows="6" class="form-control" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <form action="#" id="formulario-de-contacto" class="form-horizontal">
-            <legend>Completa el formulario para contactar con nosotros. Los campos marcados con * son obligatorios.</legend>
-
-            <div class="form-group">
-                <label class="control-label col-sm-3" for="nombre">Tu nombre *</label>
-                <div class="col-sm-9">
-                    <input id="nombre" type="text" class="form-control" aria-required="true" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-3" for="asunto">Asunto</label>
-                <div class="col-sm-9">
-                    <input id="asunto" type="text" class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-3" for="email">Tu email *</label>
-                <div class="col-sm-9">
-                    <input id="email" type="email" class="form-control" aria-required="true" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-3" for="mensaje">Tu mensaje *</label>
-                <div class="col-sm-9">
-                    <textarea id="mensaje" rows="6" class="form-control" aria-required="true" ></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>
-            </div>
-        </form>
     </div>
-
-    </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
-    $(function(){
+    $(function () {
 
-        $("#formulario-de-contacto").submit(function(){
+        $("#formulario-de-contacto").submit(function () {
             var enviarFormulario = true;
             var mensajesDeError = "";
 
-            var mapaDeErrores = { "nombre_blank" : "El campo nombre no puede estar vacío. Introduce tu nombre.",
-                "email_blank" : "El campo email no puede estar vacío. Introduce tu dirección de correo electrónico.",
-                "email_fail" : "El correo electrónico introducido no es válido. Introduce un e-mail válido.",
-                "mensaje_blank" : "El campo mensaje no puede estar vacío. Introduce tu mensaje."};
+            var mapaDeErrores = {
+                "nombre_blank": "El campo nombre no puede estar vacío. Introduce tu nombre.",
+                "email_blank": "El campo email no puede estar vacío. Introduce tu dirección de correo electrónico.",
+                "email_fail": "El correo electrónico introducido no es válido. Introduce un e-mail válido.",
+                "mensaje_blank": "El campo mensaje no puede estar vacío. Introduce tu mensaje."
+            };
 
 
-            $("#formulario-de-contacto [aria-required=true]").each(function(){
+            $("#formulario-de-contacto [required]").each(function () {
                 var campo = $(this);
-                if(campo.val() == "" || campo.val() == " "){
+                if (campo.val() == "" || campo.val() == " ") {
                     enviarFormulario = false;
-                    mensajesDeError += "<p>ERROR: " + mapaDeErrores[campo.prop('id') + "_blank"] + "</p>";
-                    campo.attr("aria-invalid","true");
-                }else {
+                    mensajesDeError += "<p><span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> ERROR: " + mapaDeErrores[campo.prop('id') + "_blank"] + "</p>";
+                    campo.attr("aria-invalid", "true");
+                } else {
                     campo.removeAttr("aria-invalid");
                 }
             });
-            if(enviarFormulario) {
-                $("#areaMensajes").html("<div class='alert alert-success'><p>El formulario se ha enviado correctamente.</p></div>");
-            }else{
+            if (enviarFormulario) {
+                $("#areaMensajes").html("<div class='alert alert-success'><p><span class='glyphicon glyphicon-ok-sign' aria-hidden='true'></span> El formulario se ha enviado correctamente.</p></div>");
+            } else {
                 $("#areaMensajes").html("<div class='alert alert-danger'>" + mensajesDeError + "</div>");
-                $("#formulario-de-contacto [aria-required=true]:first").focus();
+                $("#formulario-de-contacto [aria-invalid=true]:first").focus();
             }
 
             return false;

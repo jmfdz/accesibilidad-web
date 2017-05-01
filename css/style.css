@@ -1,0 +1,47 @@
+body {
+    font-size: 120%;
+    line-height: 1.4;
+}
+
+[aria-invalid] {
+    border-color: darkred;
+}
+
+.navbar {
+    background: white;
+    /*#F1F5F8; #D8E5EA;*/
+}
+
+.navbar .navbar-header {
+    background: #336699;
+}
+
+.navbar .navbar-brand, .navbar .navbar-brand:hover {
+    background: #336699;
+    color: white;
+    font-weight: bold;
+    font-size: 180%;
+}
+
+.navbar .navbar-nav li a, .navbar .navbar-nav li a:hover {
+    color: #336699;
+    font-weight: bold;
+}
+
+.navbar .navbar-nav li.active a, .navbar .navbar-nav li.active a:hover {
+    background: white;
+    color: #DB5461;
+}
+
+.navbar .navbar-nav li a:hover {
+    color: #DB5461;
+    font-weight: bold;
+}
+
+.jumbotron {
+    background: white;
+}
+
+h1, .jumbotron h1, h2, h3, h4, h5, h6 {
+    color: #336699;
+}
