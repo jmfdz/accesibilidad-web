@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jose Maria Fernandez - accesibilidad + tecnología + educación</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/stylejmf.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html" title="Ir a página de inicio">
+                Jose Maria Fernandez
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>Acceesibilidad Web</h1>
+        <p class="lead">
+            Ejemplos de código HTML5, CSS3 y JavaScrit accesible, creado por componentes reales.</p>
+        <p>
+            <a href="https://github.com/jmfdz/accesibilidadweb" class="btn btn-primary" title="Ir a repositorio de código de ejemplos de accesibilidad web en GitHub">Código en GitHub</a>
+            <a href="https://www.josemariafernandez.es" class="btn btn-default" title="Ir a página web de Jose Maria Fernandez">Sobre el autor</a>
+        </p>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <main id="main">
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                <h2>Formulario de contacto</h2>
+                <p>Ejemplo de formulario de contacto sencillo, correctamente etiquetado y que inserta mensajes de error de manera accesible.</p>
+                <a href="formularios.html" class="btn btn-default">Ver ejemplo <span class="sr-only">Formulario de contacto</span></a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+    $(function () {
+
+        $("#formulario-de-contacto").submit(function () {
+            var enviarFormulario = true;
+            var mensajesDeError = "";
+
+            var mapaDeErrores = {
+                "nombre_blank": "El campo nombre no puede estar vacío. Introduce tu nombre.",
+                "email_blank": "El campo email no puede estar vacío. Introduce tu dirección de correo electrónico.",
+                "email_fail": "El correo electrónico introducido no es válido. Introduce un e-mail válido.",
+                "mensaje_blank": "El campo mensaje no puede estar vacío. Introduce tu mensaje."
+            };
+
+
+            $("#formulario-de-contacto [aria-required=true]").each(function () {
+                var campo = $(this);
+                if (campo.val() == "" || campo.val() == " ") {
+                    enviarFormulario = false;
+                    mensajesDeError += "<p><span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> ERROR: " + mapaDeErrores[campo.prop('id') + "_blank"] + "</p>";
+                    campo.attr("aria-invalid", "true");
+                } else {
+                    campo.removeAttr("aria-invalid");
+                }
+            });
+            if (enviarFormulario) {
+                $("#areaMensajes").html("<div class='alert alert-success'><p><span class='glyphicon glyphicon-ok-sign' aria-hidden='true'></span> El formulario se ha enviado correctamente.</p></div>");
+            } else {
+                $("#areaMensajes").html("<div class='alert alert-danger'>" + mensajesDeError + "</div>");
+                $("#formulario-de-contacto [aria-required=true]:first").focus();
+            }
+
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
+
