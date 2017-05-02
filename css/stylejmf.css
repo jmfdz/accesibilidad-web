@@ -45,3 +45,25 @@ body {
 h1, .jumbotron h1, h2, h3, h4, h5, h6 {
     color: #336699;
 }
+
+.jmf-panel{
+    padding:0;
+    margin:0;
+}
+#panel1{
+}
+#panel2{
+    background: #CCCCCC;
+}
+#panel3{
+    background: #FFD23A;
+}
+#panel4{
+    background: #D8E5EA;
+}
+#panel5{
+    background: #005682;
+}
+#panel6{
+    background: #CE6F05;
+}
